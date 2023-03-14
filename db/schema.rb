@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_154225) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_161746) do
   create_table "accounts", force: :cascade do |t|
     t.integer "bank_id", null: false
     t.integer "customer_id", null: false
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_154225) do
     t.float "balance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "account_number"
+    t.index ["account_number"], name: "index_accounts_on_account_number"
     t.index ["bank_id"], name: "index_accounts_on_bank_id"
     t.index ["customer_id"], name: "index_accounts_on_customer_id"
   end
@@ -48,6 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_154225) do
 
   add_foreign_key "accounts", "banks"
   add_foreign_key "accounts", "customers"
-  add_foreign_key "transactions", "receivers"
-  add_foreign_key "transactions", "senders"
+  add_foreign_key "transactions", "customers", column: "receiver_id"
+  add_foreign_key "transactions", "customers", column: "sender_id"
 end

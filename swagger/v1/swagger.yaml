@@ -1,0 +1,31 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/customers":
+    get:
+      summary: Get¸ all customers
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: customers
+        '422':
+          description: invalid request
+  "/api/v1/banks":
+    get:
+      summary: Get¸ all banks
+      tags:
+      - banks
+      responses:
+        '200':
+          description: banks
+        '422':
+          description: invalid request
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
