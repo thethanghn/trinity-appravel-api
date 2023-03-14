@@ -50,6 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_161746) do
 
   add_foreign_key "accounts", "banks"
   add_foreign_key "accounts", "customers"
-  add_foreign_key "transactions", "customers", column: "receiver_id"
-  add_foreign_key "transactions", "customers", column: "sender_id"
+  add_foreign_key "transactions", "accounts", column: "receiver_id"
+  add_foreign_key "transactions", "accounts", column: "sender_id"
 end

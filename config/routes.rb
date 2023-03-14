@@ -9,7 +9,13 @@ Rails.application.routes.draw do
     namespace 'v1' do
       resources :customers
       resources :banks
-      resources :accounts
+      resources :accounts do
+        member do
+          get :balance
+          get :transactions
+        end
+      end
+      resources :transactions
     end
   end
 end

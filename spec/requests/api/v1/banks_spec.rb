@@ -1,7 +1,17 @@
-require 'rails_helper'
+require 'swagger_helper'
 
-RSpec.describe "Api::V1::Banks", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+describe 'banks API' do
+
+  path '/api/v1/banks' do
+
+    get 'Get¸ all banks' do
+      tags 'banks'
+      consumes 'application/json'
+
+      response '200', 'banks' do
+        let(:bank) { create(:bank) }
+        run_test!
+      end
+    end
   end
 end

@@ -19,13 +19,10 @@
 #  receiver_id  (receiver_id => accounts.id)
 #  sender_id    (sender_id => accounts.id)
 #
-
-one:
-  sender: one
-  receiver: one
-  amount: 1.5
-
-two:
-  sender: two
-  receiver: two
-  amount: 1.5
+FactoryBot.define do
+  factory :transaction do
+    amount { Faker::Number.decimal(l_digits: 2) }
+    association :sender, factory: :account
+    association :receiver, factory: :account
+  end
+end

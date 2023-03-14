@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+- demo uses sqlite so no db setup needed
+- run `rails db:migrate`
+- gen data `rails db:seed`
+- run server `rails s`
 
-* Ruby version
+## API docs
 
-* System dependencies
+- run server and access `http://localhost:3000/api-docs`
 
-* Configuration
+## Tests
 
-* Database creation
+- run `rspec spec`
 
-* Database initialization
+## Tasks
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Implement assignment using:
+  - [x] Language: Ruby
+  - [x] Framework: Rails
+- There should be API routes that allow them to:
+  - [x] Create a new bank account for a customer, with an initial deposit amount. A
+  - [x] single customer may have multiple bank accounts.
+  - [x] Transfer amounts between any two accounts, including those owned by
+        different customers.
+  - [x] Retrieve balances for a given account.
+  - [x] Retrieve transfer history for a given account.
+- [x] Write tests for your business logic

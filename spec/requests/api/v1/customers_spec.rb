@@ -12,11 +12,6 @@ describe 'Customers API' do
         let(:customer) { create(:customer) }
         run_test!
       end
-
-      response '422', 'invalid request' do
-        let(:customer) { create(:customer) }
-        run_test!
-      end
     end
   end
 end

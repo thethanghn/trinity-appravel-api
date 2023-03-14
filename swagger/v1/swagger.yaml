@@ -4,16 +4,123 @@ info:
   title: API V1
   version: v1
 paths:
-  "/api/v1/customers":
+  "/api/v1/accounts":
     get:
-      summary: Get¸ all customers
+      summary: Get¸ all accounts
       tags:
-      - Customers
+      - Accounts
       responses:
         '200':
-          description: customers
+          description: accounts
         '422':
           description: invalid request
+    post:
+      summary: Creates an account
+      tags:
+      - Accounts
+      parameters: []
+      responses:
+        '201':
+          description: account created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                initial_deposit:
+                  type: number
+                bank_id:
+                  type: integer
+                customer_id:
+                  type: integer
+              required:
+              - bank_id
+              - customer_id
+              - initial_deposit
+  "/api/v1/accounts/{id}":
+    get:
+      summary: Retrieves a account details
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: account found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                required:
+                - id
+        '404':
+          description: account not found
+        '406':
+          description: unsupported accept header
+  "/api/v1/accounts/{id}/balance":
+    get:
+      summary: Retrieves a account balance
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: account found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                required:
+                - id
+        '404':
+          description: account not found
+        '406':
+          description: unsupported accept header
+  "/api/v1/accounts/{id}/transactions":
+    get:
+      summary: Retrieves a account transactions
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: account found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                required:
+                - id
+        '404':
+          description: account not found
+        '406':
+          description: unsupported accept header
   "/api/v1/banks":
     get:
       summary: Get¸ all banks
@@ -24,6 +131,79 @@ paths:
           description: banks
         '422':
           description: invalid request
+  "/api/v1/customers":
+    get:
+      summary: Get¸ all customers
+      tags:
+      - Customers
+      responses:
+        '200':
+          description: customers
+        '422':
+          description: invalid request
+  "/api/v1/transactions":
+    get:
+      summary: Get¸ all transactions
+      tags:
+      - transactions
+      responses:
+        '200':
+          description: transactions
+        '422':
+          description: invalid request
+    post:
+      summary: Creates an transaction
+      tags:
+      - transactions
+      parameters: []
+      responses:
+        '201':
+          description: transaction created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                sender_id:
+                  type: integer
+                receiver_id:
+                  type: integer
+              required:
+              - sender_id
+              - receiver_id
+              - amount
+  "/api/v1/transactions/{id}/balance":
+    get:
+      summary: Retrieves a transaction balance
+      tags:
+      - transactions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: transaction found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                required:
+                - id
+        '404':
+          description: transaction not found
+        '406':
+          description: unsupported accept header
 servers:
 - url: http://{defaultHost}
   variables:
